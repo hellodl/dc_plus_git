@@ -14,13 +14,13 @@ from dc_utils import onehot,get_batch,save_array,load_array
 
 
 def aug_trn_batches():
-    gen = image.ImageDataGenerator(rotation_range=10,
-                                   width_shift_range=0.05,
-                                   zoom_range=0.05,
-                                   channel_shift_range=10,
-                                   height_shift_range=0.05,
-                                   shear_range=0.05,
-                                   vertical_flip=True,
+    gen = image.ImageDataGenerator(rotation_range=5,
+                                   width_shift_range=0.1,
+                                   zoom_range=[0.8, 1.0],
+                                   # channel_shift_range=10,
+                                   height_shift_range=0.1,
+                                   shear_range=0.1,
+                                   vertical_flip=False,
                                    horizontal_flip=True)
     trn_batches = get_batch('./data/train/',
                             target_size=[224,224],
