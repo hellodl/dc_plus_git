@@ -169,7 +169,7 @@ def ensemble1(dropout, opt, set_lr_fc, set_ep_fc):
     ll_bn_model = gen_ll_model(dropout=dropout, opt=opt)
     vgg16bn_model=combine_vgg16_bn_with_ll(ll_bn_model)
     vgg16bn_model.load_weights('./model/ft_dense.h5')
-    train_dense_layers_bn(model, dropout, opt=opt, set_lr=set_lr_fc, set_ep=set_ep_fc, idx='1')
+    train_dense_layers_bn(vgg16bn_model, dropout, opt=opt, set_lr=set_lr_fc, set_ep=set_ep_fc, idx='1')
 
         
 def get_conv_model(model):
