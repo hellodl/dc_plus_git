@@ -161,11 +161,14 @@ def ensemble(dropout, opt, set_lr_ll, set_ep_ll, set_lr_fc, set_ep_fc):
 
 def ensemble0(dropout, opt, set_lr_ll, set_ep_ll):
     model = train_last_layer_bn(dropout, opt=opt, set_lr=set_lr_ll, set_ep=set_ep_ll, idx='1')
-    save_model('./model/ft_dense.hdf5')
+    model.save_weights('./model/ft_dense.h5')
         
         
 def ensemble1(dropout, opt, set_lr_fc, set_ep_fc):
-    model = load_model('./model/ft_dense.hdf5')
+    opt = eval(opt)()
+    ll_bn_model = gen_ll_model(dropout=dropout, opt=opt)
+    vgg16bn_model=combine_vgg16_bn_with_ll(ll_bn_model)
+    vgg16bn_model.load_weights('./model/ft_dense.h5')
     train_dense_layers_bn(model, dropout, opt=opt, set_lr=set_lr_fc, set_ep=set_ep_fc, idx='1')
 
         
