@@ -165,7 +165,6 @@ def ensemble0(dropout, opt, set_lr_ll, set_ep_ll):
         
         
 def ensemble1(dropout, opt, set_lr_fc, set_ep_fc):
-    opt = eval(opt)()
     ll_bn_model = gen_ll_model(dropout=dropout, opt=opt)
     vgg16bn_model=combine_vgg16_bn_with_ll(ll_bn_model)
     vgg16bn_model.load_weights('./model/ft_dense.h5')
