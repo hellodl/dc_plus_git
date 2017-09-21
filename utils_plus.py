@@ -301,7 +301,7 @@ def spilt_model(model):
 
 
 def train_dense_layers_bn(model, dropout, opt, set_lr, set_ep, idx):
-    opt = eval(opt)()
+    opt = eval(opt)(momentum=0.9)
     conv_model, fc_layers, last_conv_idx = get_conv_model(model)
     fc_in_shape = conv_model.output_shape[1:]
 
