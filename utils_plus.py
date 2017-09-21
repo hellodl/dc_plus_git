@@ -159,6 +159,16 @@ def ensemble(dropout, opt, set_lr_ll, set_ep_ll, set_lr_fc, set_ep_fc):
         train_dense_layers_bn(model, dropout, opt=opt, set_lr=set_lr_fc, set_ep=set_ep_fc, idx=i)
 
 
+def ensemble0(dropout, opt, set_lr_ll, set_ep_ll):
+    model = train_last_layer_bn(dropout, opt=opt, set_lr=set_lr_ll, set_ep=set_ep_ll, idx='1')
+    save_model('./model/ft_dense.hdf5')
+        
+        
+def ensemble1(dropout, opt, set_lr_fc, set_ep_fc):
+    model = load_model('./model/ft_dense.hdf5')
+    train_dense_layers_bn(model, dropout, opt=opt, set_lr=set_lr_fc, set_ep=set_ep_fc, idx='1')
+
+        
 def get_conv_model(model):
     layers = model.layers
     last_conv_idx = [index for index,layer in enumerate(layers)
